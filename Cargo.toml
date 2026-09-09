@@ -1,0 +1,20 @@
+[package]
+name = "g2p"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "Streaming grapheme-to-phoneme CLI: text in, espeak-ng IPA phonemes out, JSON lines over stdio."
+repository = "https://github.com/jomon003/G2P"
+
+[dependencies]
+# Statically links espeak-ng (GPLv3+); the espeak-ng sources are
+# vendored inside the espeak-rs-sys crate package and pinned by
+# Cargo.lock, which together with this repository forms the complete
+# corresponding source of the built binary.
+espeak-rs = "0.2.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+strip = true
+lto = true
